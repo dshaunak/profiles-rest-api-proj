@@ -12,15 +12,15 @@ class UserProfileManager(BaseUserManager):
         #does not allow None passwords, so the user wont be able
         #authenticate without adding password anyway
         if not email:
-            raise ValueError('User must have an email address')
+            raise ValueError('User must have an email address.')
 
         email = self.normalize_email(email)
         user = self.model(email=email, name=name)
 
-        user = self.model(
-            user.set_password(password),
-            user.save(using=self._db)
-        )
+
+        user.set_password(password),
+        user.save(using=self._db)
+        
         return user
 
     def create_superuser(self, email, name, password):
